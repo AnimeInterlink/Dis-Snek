@@ -11,7 +11,7 @@ if TYPE_CHECKING:
     from dis_snek.models.discord.snowflake import Snowflake_Type
 
 __all__ = [
-    "SnakeException",
+    "NaffException",
     "BotException",
     "GatewayNotFound",
     "LoginError",
@@ -48,15 +48,15 @@ __all__ = [
 ]
 
 
-class SnakeException(Exception):
+class NaffException(Exception):
     """Base Exception of discord-snakes."""
 
 
-class BotException(SnakeException):
+class BotException(NaffException):
     """An issue occurred in the client, likely user error."""
 
 
-class GatewayNotFound(SnakeException):
+class GatewayNotFound(NaffException):
     """An exception that is raised when the gateway for Discord could not be found."""
 
     def __init__(self) -> None:
@@ -67,7 +67,7 @@ class LoginError(BotException):
     """The bot failed to login, check your token."""
 
 
-class HTTPException(SnakeException):
+class HTTPException(NaffException):
     """
     A HTTP request resulted in an exception.
 
@@ -179,11 +179,11 @@ class RateLimited(HTTPException):
     """Discord is rate limiting this application."""
 
 
-class TooManyChanges(SnakeException):
+class TooManyChanges(NaffException):
     """You have changed something too frequently."""
 
 
-class WebSocketClosed(SnakeException):
+class WebSocketClosed(NaffException):
     """The websocket was closed."""
 
     code: int = 0
@@ -210,7 +210,7 @@ class WebSocketClosed(SnakeException):
         super().__init__(f"The Websocket closed with code: {code} - {self.codes.get(code, 'Unknown Error')}")
 
 
-class VoiceWebSocketClosed(SnakeException):
+class VoiceWebSocketClosed(NaffException):
     """The voice websocket was closed."""
 
     code: int = 0
@@ -237,7 +237,7 @@ class VoiceWebSocketClosed(SnakeException):
         super().__init__(f"The Websocket closed with code: {code} - {self.codes.get(code, 'Unknown Error')}")
 
 
-class WebSocketRestart(SnakeException):
+class WebSocketRestart(NaffException):
     """The websocket closed, and is safe to restart."""
 
     resume: bool = False
@@ -367,7 +367,7 @@ class AlreadyDeferred(BotException):
     """An interaction was already deferred, and you attempted to defer it again."""
 
 
-class ForeignWebhookException(SnakeException):
+class ForeignWebhookException(NaffException):
     """Raised when you attempt to send using a webhook you did not create."""
 
 
@@ -382,7 +382,7 @@ class VoiceAlreadyConnected(BotException):
         super().__init__("Bot already connected to the voice channel")
 
 
-class VoiceConnectionTimeout(SnakeException):
+class VoiceConnectionTimeout(NaffException):
     """Raised when the bot fails to connect to a voice channel."""
 
     def __init__(self) -> None:

@@ -526,7 +526,7 @@ class Client(
                         description=f"```\n{out[:EMBED_MAX_DESC_LENGTH-8]}```",
                     )
                 )
-        except errors.SnakeException:
+        except errors.NaffException:
             pass
 
     async def on_command(self, ctx: Context) -> None:
