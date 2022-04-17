@@ -17,7 +17,7 @@ log = logging.getLogger(logger_name)
 class DebugCog(DebugExec, DebugAppCMD, DebugScales, Cog):
     def __init__(self, bot: Client) -> None:
         super().__init__(bot)
-        self.add_scale_check(checks.is_owner())
+        self.add_cog_check(checks.is_owner())
 
         log.info("Debug Cog is growing!")
 
@@ -48,7 +48,7 @@ class DebugCog(DebugExec, DebugAppCMD, DebugScales, Cog):
         if privileged_intents:
             e.add_field("Privileged Intents", " | ".join(privileged_intents))
 
-        e.add_field("Loaded Scales", ", ".join(self.bot.scales))
+        e.add_field("Loaded Scales", ", ".join(self.bot.cogs))
 
         e.add_field("Guilds", str(len(self.bot.guilds)))
 

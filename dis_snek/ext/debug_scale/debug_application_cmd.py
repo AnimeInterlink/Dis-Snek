@@ -29,7 +29,7 @@ app_cmds_def = {
 
 class DebugAppCMD(Cog):
     def __init__(self, bot: Client) -> None:
-        self.add_scale_check(checks.is_owner())
+        self.add_cog_check(checks.is_owner())
 
     @slash_command(
         "debug",

@@ -197,10 +197,11 @@ As you can see, there's one extra bit, a function called `setup`, this function 
 so it knows how to load the scale properly.
 
 To load a scale, you simply add the following to your `main` script, just above `bot.start`:
+
 ```python
 ...
 
-bot.grow_scale("Filename_here")
+bot.load_cog("Filename_here")
 
 bot.start("token")
 ```
@@ -238,7 +239,7 @@ def setup(bot, default_scale: bool, **kwargs):  # We don't care about other argu
 
 ...
 
-bot.grow_scale("Filename_here", default_scale=False, another_arg=3.14)
+bot.load_cog("Filename_here", default_scale=False, another_arg=3.14)
 # OR
-bot.grow_scale("Filename_here", default_scale=True, some_arg=555)
+bot.load_cog("Filename_here", default_scale=True, some_arg=555)
 ```
