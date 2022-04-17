@@ -21,7 +21,7 @@ __all__ = ["GlobalCache", "create_cache"]
 
 
 if TYPE_CHECKING:
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
     from dis_snek.models.discord.channel import DM, TYPE_ALL_CHANNEL
     from dis_snek.models.discord.snowflake import Snowflake_Type
 
@@ -55,7 +55,7 @@ def create_cache(
 
 @define(kw_only=False)
 class GlobalCache:
-    _client: "Snake" = field()
+    _client: "Client" = field()
 
     # Non expiring discord objects cache
     user_cache: dict = field(factory=dict)  # key: user_id
@@ -819,7 +819,7 @@ class GlobalCache:
         """
         Fetch an emoji based on the guild and its own ID.
 
-        This cache is disabled by default, start your bot with `Snake(enable_emoji_cache=True)` to enable it.
+        This cache is disabled by default, start your bot with `Client(enable_emoji_cache=True)` to enable it.
 
         Args:
             guild_id: The ID of the guild this emoji belongs to
@@ -841,7 +841,7 @@ class GlobalCache:
         """
         Get an emoji based on the emoji ID.
 
-        This cache is disabled by default, start your bot with `Snake(enable_emoji_cache=True)` to enable it.
+        This cache is disabled by default, start your bot with `Client(enable_emoji_cache=True)` to enable it.
 
         Args:
             emoji_id: The ID of the emoji
@@ -853,7 +853,7 @@ class GlobalCache:
 
     def place_emoji_data(self, guild_id: "Snowflake_Type", data: discord_typings.EmojiData) -> "CustomEmoji":
         """
-        Take json data representing an emoji, process it, and cache it. This cache is disabled by default, start your bot with `Snake(enable_emoji_cache=True)` to enable it.
+        Take json data representing an emoji, process it, and cache it. This cache is disabled by default, start your bot with `Client(enable_emoji_cache=True)` to enable it.
 
         Args:
             guild_id: The ID of the guild this emoji belongs to

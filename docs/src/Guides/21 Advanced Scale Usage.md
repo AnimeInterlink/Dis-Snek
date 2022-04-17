@@ -13,7 +13,7 @@ Checks prohibit the interaction from running if they return `False`.
 You can add your own check to your scale. In this example, we only want a user whose name starts with "a" to run any command from this scale.
 ```python
 class MyScale(Scale):
-    def __init__(self, client: Snake):
+    def __init__(self, client: Client):
         self.client = client
         self.add_scale_check(self.a_check)
 
@@ -35,7 +35,7 @@ Pre- and Post-Run events are similar to checks. They run before and after an int
 In this example, we are just printing some stats before and after the interaction.
 ```python
 class MyScale(Scale):
-    def __init__(self, client: Snake):
+    def __init__(self, client: Client):
         self.client = client
         self.add_scale_prerun(self.pre_run)
         self.add_scale_postrun(self.post_run)
@@ -65,7 +65,7 @@ By subclassing your own custom scale, your can still split your code into as man
 ### File 1
 ```python
 class CustomScale(Scale):
-    def __init__(self, client: Snake):
+    def __init__(self, client: Client):
         self.client = client
         self.add_scale_check(self.a_check)
 

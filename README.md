@@ -22,19 +22,23 @@ While this library shares features and some stylistic choices with `discord.py`,
 
 ## How do I use this?
 Here is a basic example:
-```python
-from dis_snek import Snake, Button, ButtonStyles, CommandTypes, context_menu, message_command, listen
 
-bot = Snake(sync_interactions=True)
+```python
+from dis_snek import Client, Button, ButtonStyles, CommandTypes, context_menu, message_command, listen
+
+bot = Client(sync_interactions=True)
+
 
 @listen()
 async def on_startup():
     print("Ready")
     print(f"This bot is owned by {bot.owner}")
 
+
 @message_command()
 async def test_button(ctx):
     await ctx.send("Blurple button example!", components=Button(ButtonStyles.BLURPLE, "Click me"))
+
 
 @context_menu(name="User menu", context_type=CommandTypes.USER, scopes=[931832853770149918])
 async def user_context(ctx):
@@ -55,4 +59,4 @@ If youre stuck for things to contribute, check out our [GitHub Projects](https:/
 ## Links:
 - Support Server: https://discord.gg/dis-snek
 - Documentation:  https://dis-snek.rtfd.io/
-- GitHub Projects: https://github.com/orgs/Discord-Snake-Pit/projects/1
+- GitHub Projects: https://github.com/orgs/Discord-Client-Pit/projects/1

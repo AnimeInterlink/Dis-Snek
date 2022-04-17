@@ -11,7 +11,7 @@ from .base import DiscordObject, ClientObject
 if TYPE_CHECKING:
     from aiohttp import FormData
 
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
     from dis_snek.models.discord.user import User
     from dis_snek.models.discord.channel import TYPE_THREAD_CHANNEL
     from dis_snek.models.discord.snowflake import Snowflake_Type
@@ -87,7 +87,7 @@ class ThreadList(ClientObject):
     """Whether there are potentially additional threads that could be returned on a subsequent call."""
 
     @classmethod
-    def _process_dict(cls, data: Dict[str, Any], client: "Snake") -> Dict[str, Any]:
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
         threads = []
         for thread_data in data["threads"]:
             threads.append(client.cache.place_channel_data(thread_data))

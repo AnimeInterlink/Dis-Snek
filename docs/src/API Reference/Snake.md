@@ -1,1 +1,1 @@
-::: dis_snek.client.Snake
+::: dis_snek.client.Client

@@ -4,7 +4,7 @@
      - If you see `ERROR: Could not find a version that satisfies the requirement dis_snek (from versions: none)` when trying to `pip install dis-snek`, this is your problem.
 
 2. Classes/Models
-     - Your client is `dis_snek.Snake`.  (Note that commands are a first-class feature, so this is a replacement to both `discord.Client` and `discord.ext.commands.Bot`)
+     - Your client is `dis_snek.Client`.  (Note that commands are a first-class feature, so this is a replacement to both `discord.Client` and `discord.ext.commands.Bot`)
      - Cogs are `Scales`.
      - `Member` is not a subclass of `User`, if you're using `isinstance`, you'll want to check both explicitly.
 

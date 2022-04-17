@@ -13,7 +13,7 @@ from dis_snek.models.discord.timestamp import Timestamp
 from .base import ClientObject
 
 if TYPE_CHECKING:
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
     from dis_snek.models import TYPE_GUILD_CHANNEL
     from dis_snek.models.discord.user import User
     from dis_snek.models.discord.snowflake import Snowflake_Type
@@ -79,7 +79,7 @@ class Invite(ClientObject):
         return self._client.cache.get_user(self._target_user_id) if self._target_user_id else None
 
     @classmethod
-    def _process_dict(cls, data: Dict[str, Any], client: "Snake") -> Dict[str, Any]:
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
         if "stage_instance" in data:
             data["stage_instance"] = StageInstance.from_dict(data, client)
 

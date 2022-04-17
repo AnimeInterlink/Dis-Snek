@@ -44,7 +44,7 @@ __all__ = [
 
 
 if TYPE_CHECKING:
-    from dis_snek import Snake
+    from dis_snek import Client
     from dis_snek.models.snek.context import ComponentContext
     from dis_snek.models.discord.snowflake import Snowflake_Type
     from dis_snek.models.discord.guild import Guild
@@ -58,7 +58,7 @@ class BaseEvent:
 
     override_name: str = field(kw_only=True, default=None)
     """Custom name of the event to be used when dispatching."""
-    bot: "Snake" = field(kw_only=True, default=MISSING)
+    bot: "Client" = field(kw_only=True, default=MISSING)
     """The client instance that dispatched this event."""
 
     @property

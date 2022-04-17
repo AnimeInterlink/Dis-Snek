@@ -32,7 +32,7 @@ from .enums import (
 
 if TYPE_CHECKING:
     from aiohttp import FormData
-    from dis_snek import Snake
+    from dis_snek import Client
     from dis_snek.models.snek.active_voice_state import ActiveVoiceState
 
 __all__ = [
@@ -709,7 +709,7 @@ class BaseChannel(DiscordObject):
     """The channel topic (0-1024 characters)"""
 
     @classmethod
-    def from_dict_factory(cls, data: dict, client: "Snake") -> "TYPE_ALL_CHANNEL":
+    def from_dict_factory(cls, data: dict, client: "Client") -> "TYPE_ALL_CHANNEL":
         """
         Creates a channel object of the appropriate type.
 
@@ -832,7 +832,7 @@ class DMChannel(BaseChannel, MessageableMixin):
     """The users of the DM that will receive messages sent"""
 
     @classmethod
-    def _process_dict(cls, data: Dict[str, Any], client: "Snake") -> Dict[str, Any]:
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
         data = super()._process_dict(data, client)
         if recipients := data.get("recipients", None):
             data["recipients"] = [client.cache.place_user_data(recipient) for recipient in recipients]
@@ -941,7 +941,7 @@ class GuildChannel(BaseChannel):
         return self._client.cache.get_channel(self.parent_id)
 
     @classmethod
-    def _process_dict(cls, data: Dict[str, Any], client: "Snake") -> Dict[str, Any]:
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
         if overwrites := data.get("permission_overwrites"):
             data["permission_overwrites"] = PermissionOverwrite.from_list(overwrites)
         return data
@@ -1642,7 +1642,7 @@ class ThreadChannel(BaseChannel, MessageableMixin, WebhookMixin):
     _guild_id: Snowflake_Type = field(default=None, converter=optional_c(to_snowflake))
 
     @classmethod
-    def _process_dict(cls, data: Dict[str, Any], client: "Snake") -> Dict[str, Any]:
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
         data = super()._process_dict(data, client)
         thread_metadata: dict = data.get("thread_metadata", {})
         data.update(thread_metadata)

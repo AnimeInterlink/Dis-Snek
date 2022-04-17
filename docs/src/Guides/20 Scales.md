@@ -19,7 +19,7 @@ Below is an example of a bot, one with scales, one without.
         import logging
 
         import dis_snek.const
-        from dis_snek.client import Snake
+        from dis_snek.client import Client
         from dis_snek.models.application_commands import slash_command, slash_option
         from dis_snek.models.command import message_command
         from dis_snek.models.context import InteractionContext
@@ -33,7 +33,7 @@ Below is an example of a bot, one with scales, one without.
         cls_log = logging.getLogger(dis_snek.const.logger_name)
         cls_log.setLevel(logging.DEBUG)
 
-        bot = Snake(intents=Intents.DEFAULT, sync_interactions=True, asyncio_debug=True)
+        bot = Client(intents=Intents.DEFAULT, sync_interactions=True, asyncio_debug=True)
 
 
         @listen()
@@ -94,7 +94,7 @@ Below is an example of a bot, one with scales, one without.
         import logging
 
         import dis_snek.const
-        from dis_snek.client import Snake
+        from dis_snek.client import Client
         from dis_snek.models.context import ComponentContext
         from dis_snek.models.enums import Intents
         from dis_snek.models.events import Component
@@ -105,7 +105,7 @@ Below is an example of a bot, one with scales, one without.
         cls_log = logging.getLogger(dis_snek.const.logger_name)
         cls_log.setLevel(logging.DEBUG)
 
-        bot = Snake(intents=Intents.DEFAULT, sync_interactions=True, asyncio_debug=True)
+        bot = Client(intents=Intents.DEFAULT, sync_interactions=True, asyncio_debug=True)
 
 
         @listen()

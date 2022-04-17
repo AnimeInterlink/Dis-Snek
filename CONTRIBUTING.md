@@ -8,7 +8,7 @@ cls_log.setLevel(logging.DEBUG)
 
 bot.grow_scale("dis_snek.ext.debug_scale")
 
-bot = Snake(..., asyncio_debug=True)
+bot = Client(..., asyncio_debug=True)
 ```
 ---
 

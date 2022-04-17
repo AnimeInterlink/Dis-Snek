@@ -11,7 +11,7 @@ from .base import DiscordObject
 from .enums import ScheduledEventPrivacyLevel, ScheduledEventType, ScheduledEventStatus
 
 if TYPE_CHECKING:
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
     from dis_snek.models.discord.channel import GuildStageVoice, GuildVoice
     from dis_snek.models.discord.guild import Guild
     from dis_snek.models.discord.user import Member
@@ -67,7 +67,7 @@ class ScheduledEvent(DiscordObject):
         return self._client.cache.get_guild(self._guild_id)
 
     @classmethod
-    def _process_dict(cls, data: Dict[str, Any], client: "Snake") -> Dict[str, Any]:
+    def _process_dict(cls, data: Dict[str, Any], client: "Client") -> Dict[str, Any]:
         if data.get("creator"):
             data["creator"] = client.cache.place_user_data(data["creator"])
 

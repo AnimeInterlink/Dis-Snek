@@ -104,10 +104,10 @@ if TYPE_CHECKING:
 
 log = logging.getLogger(logger_name)
 
-__all__ = ["Snake"]
+__all__ = ["Client"]
 
 
-class Snake(
+class Client(
     processors.ChannelEvents,
     processors.GuildEvents,
     processors.MemberEvents,
@@ -413,7 +413,7 @@ class Snake(
         if len(self.processors) == 0:
             log.warning("No Processors are loaded! This means no events will be processed!")
 
-    async def generate_prefixes(self, bot: "Snake", message: Message) -> str | Iterable[str]:
+    async def generate_prefixes(self, bot: "Client", message: Message) -> str | Iterable[str]:
         """
         A method to get the bot's default_prefix, can be overridden to add dynamic prefixes.
 
@@ -486,7 +486,7 @@ class Snake(
         """
         Catches all errors dispatched by commands.
 
-        By default it will call `Snake.on_error`
+        By default it will call `Client.on_error`
 
         Override this to change error handling behavior
 
@@ -551,7 +551,7 @@ class Snake(
         """
         Catches all errors dispatched by components.
 
-        By default it will call `Snake.on_error`
+        By default it will call `Client.on_error`
 
         Override this to change error handling behavior
 
@@ -575,7 +575,7 @@ class Snake(
         """
         Catches all errors dispatched by autocompletion options.
 
-        By default it will call `Snake.on_error`
+        By default it will call `Client.on_error`
 
         Override this to change error handling behavior
 
@@ -651,7 +651,7 @@ class Snake(
         Login to discord via http.
 
         !!! note
-            You will need to run Snake.start_gateway() before you start receiving gateway events.
+            You will need to run Client.start_gateway() before you start receiving gateway events.
 
         Args:
             token str: Your bot's token

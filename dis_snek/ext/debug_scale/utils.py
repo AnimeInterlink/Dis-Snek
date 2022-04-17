@@ -6,7 +6,7 @@ from dis_snek.client.utils.cache import TTLCache
 from dis_snek.models import Embed, MaterialColors
 
 if TYPE_CHECKING:
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
 
 __all__ = ["debug_embed", "get_cache_state", "strf_delta"]
 
@@ -26,7 +26,7 @@ def debug_embed(title: str, **kwargs) -> Embed:
     return e
 
 
-def get_cache_state(bot: "Snake") -> str:
+def get_cache_state(bot: "Client") -> str:
     """Create a nicely formatted table of internal cache state."""
     caches = [
         c[0]

@@ -15,7 +15,7 @@ There are two different ways to install this library and create your bot.
 
 === "Using a Template"
 
-    We created a [cookiecutter template](https://github.com/Discord-Snake-Pit/Bot-Template) which you can use to set up your own bot faster.
+    We created a [cookiecutter template](https://github.com/Discord-Client-Pit/Bot-Template) which you can use to set up your own bot faster.
     With the template, your code will already have a well-defined structure which will make development easier for you.
 
     We recommend newer devs to make use of this template.
@@ -32,11 +32,11 @@ There are two different ways to install this library and create your bot.
 
     ### Template Installation
     1. Install cookiecutter - `pip install cookiecutter`
-    2. Set up the template - `cookiecutter https://github.com/Discord-Snake-Pit/Bot-Template`
+    2. Set up the template - `cookiecutter https://github.com/Discord-Client-Pit/Bot-Template`
 
     And that's it!
 
-    More information can be found [here](https://github.com/Discord-Snake-Pit/Bot-Template).
+    More information can be found [here](https://github.com/Discord-Client-Pit/Bot-Template).
 
 
 === "Manual Installation"
@@ -83,9 +83,9 @@ There are two different ways to install this library and create your bot.
     Now let's get a basic bot going, for your code, you'll want something like this:
 
     ```python
-    from dis_snek import Snake, Intents, listen
+    from dis_snek import Client, Intents, listen
 
-    bot = Snake(intents=Intents.DEFAULT)
+    bot = Client(intents=Intents.DEFAULT)
     # intents are what events we want to receive from discord, `DEFAULT` is usually fine
 
     @listen()  # this decorator tells snek that it needs to listen for the corresponding event, and run this coroutine

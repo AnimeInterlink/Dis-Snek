@@ -9,7 +9,7 @@ from dis_snek.client.utils.misc_utils import wrap_partial
 from dis_snek.models.snek.tasks import Task
 
 if TYPE_CHECKING:
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
     from dis_snek.models.snek import AutoDefer, BaseCommand, Listener
     from dis_snek.models.snek import Context
 
@@ -34,7 +34,7 @@ class Scale:
         ```
 
     Attributes:
-        bot Snake: A reference to the client
+        bot Client: A reference to the client
         name str: The name of this Scale (`read-only`)
         description str: A description of this Scale
         scale_checks str: A list of checks to be ran on any command in this scale
@@ -43,7 +43,7 @@ class Scale:
 
     """
 
-    bot: "Snake"
+    bot: "Client"
     __name: str
     extension_name: str
     description: str
@@ -55,7 +55,7 @@ class Scale:
     _listeners: List
     auto_defer: "AutoDefer"
 
-    def __new__(cls, bot: "Snake", *args, **kwargs) -> "Scale":
+    def __new__(cls, bot: "Client", *args, **kwargs) -> "Scale":
         new_cls = super().__new__(cls)
         new_cls.bot = bot
         new_cls.__name = cls.__name__

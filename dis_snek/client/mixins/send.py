@@ -6,7 +6,7 @@ import dis_snek.models as models
 if TYPE_CHECKING:
     from aiohttp.formdata import FormData
 
-    from dis_snek.client import Snake
+    from dis_snek.client import Client
     from dis_snek.models.discord.file import UPLOADABLE_TYPE
     from dis_snek.models.discord.components import BaseComponent
     from dis_snek.models.discord.embed import Embed
@@ -19,7 +19,7 @@ __all__ = ["SendMixin"]
 
 
 class SendMixin:
-    _client: "Snake"
+    _client: "Client"
 
     async def _send_http_request(self, message_payload: Union[dict, "FormData"]) -> dict:
         raise NotImplementedError

@@ -26,7 +26,7 @@ from dis_snek.client.utils.serializer import export_converter
 from dis_snek.models.discord.emoji import process_emoji
 
 if TYPE_CHECKING:
-    from dis_snek import Snake
+    from dis_snek import Client
     from dis_snek.models.discord.emoji import PartialEmoji
 
 __all__ = ["Paginator"]
@@ -76,7 +76,7 @@ class Page:
 
 @define(kw_only=False)
 class Paginator:
-    client: "Snake" = field()
+    client: "Client" = field()
     """The snake client to hook listeners into"""
 
     page_index: int = field(kw_only=True, default=0)
@@ -164,11 +164,11 @@ class Paginator:
         return self._author_id
 
     @classmethod
-    def create_from_embeds(cls, client: "Snake", *embeds: Embed, timeout: int = 0) -> "Paginator":
+    def create_from_embeds(cls, client: "Client", *embeds: Embed, timeout: int = 0) -> "Paginator":
         """Create a paginator system from a list of embeds.
 
         Args:
-            client: A reference to the Snake client
+            client: A reference to the Client client
             embeds: The embeds to use for each page
             timeout: A timeout to wait before closing the paginator
 
@@ -179,13 +179,13 @@ class Paginator:
 
     @classmethod
     def create_from_string(
-        cls, client: "Snake", content: str, prefix: str = "", suffix: str = "", page_size: int = 4000, timeout: int = 0
+        cls, client: "Client", content: str, prefix: str = "", suffix: str = "", page_size: int = 4000, timeout: int = 0
     ) -> "Paginator":
         """
         Create a paginator system from a string.
 
         Args:
-            client: A reference to the Snake client
+            client: A reference to the Client client
             content: The content to paginate
             prefix: The prefix for each page to use
             suffix: The suffix for each page to use
@@ -208,7 +208,7 @@ class Paginator:
     @classmethod
     def create_from_list(
         cls,
-        client: "Snake",
+        client: "Client",
         content: list[str],
         prefix: str = "",
         suffix: str = "",
@@ -219,7 +219,7 @@ class Paginator:
         Create a paginator from a list of strings. Useful to maintain formatting.
 
         Args:
-            client: A reference to the Snake client
+            client: A reference to the Client client
             content: The content to paginate
             prefix: The prefix for each page to use
             suffix: The suffix for each page to use

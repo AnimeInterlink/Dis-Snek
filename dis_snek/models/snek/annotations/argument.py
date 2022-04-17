@@ -33,7 +33,7 @@ def define_annotation() -> Callable[[Callable[[Context], T]], Callable[[Context]
                 args.append("context")
             elif param.annotation is Scale:
                 args.append("scale")
-            # elif param.annotation is Snake:
+            # elif param.annotation is Client:
             #     args.append("snake")
         func._annotation_dat = {"args": args}  # type: ignore
         return func
