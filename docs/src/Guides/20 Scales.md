@@ -182,7 +182,7 @@ Scales are effectively just another python file that contains a class that inher
 inside this scale, you can put whatever you would like. And upon loading, the contents are added to the bot.
 
 ```python
-from dis_snek import Cog
+from naff import Cog
 
 
 class SomeClass(Cog):
@@ -217,7 +217,7 @@ Any arguments you pass to the `setup` or `teardown` methods, will also be passed
 Here is a basic "Cog switching" example:
 
 ```python
-from dis_snek import Cog
+from naff import Cog
 
 
 class SomeScale(Cog):

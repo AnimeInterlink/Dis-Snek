@@ -24,7 +24,7 @@ While this library shares features and some stylistic choices with `discord.py`,
 Here is a basic example:
 
 ```python
-from dis_snek import Client, Button, ButtonStyles, CommandTypes, context_menu, message_command, listen
+from naff import Client, Button, ButtonStyles, CommandTypes, context_menu, message_command, listen
 
 bot = Client(sync_interactions=True)
 
