@@ -51,10 +51,10 @@ bot.start("Token")
 
 ```python
 
-from dis_snek import message_command, Button, ActionRow, ButtonStyles, Scale
+from dis_snek import message_command, Button, ActionRow, ButtonStyles, Cog
 
 
-class ButtonExampleSkin(Scale):
+class ButtonExampleSkin(Cog):
     @message_command()
     async def blurple_button(self, ctx):
         await ctx.send("hello there", components=Button(ButtonStyles.BLURPLE, "A blurple button"))
@@ -92,10 +92,11 @@ def setup(bot):
 
 ```python
 
-from dis_snek import slash_command, slash_option, InteractionContext, context_menu, CommandTypes, Button, ActionRow, ButtonStyles, Scale
+from dis_snek import slash_command, slash_option, InteractionContext, context_menu, CommandTypes, Button, ActionRow,
+    ButtonStyles, Cog
 
 
-class CommandsExampleSkin(Scale):
+class CommandsExampleSkin(Cog):
     @slash_command("command", description="This is a test", scopes=701347683591389185)
     @slash_option("another", "str option", 3, required=True)
     @slash_option("option", "int option", 4, required=True)

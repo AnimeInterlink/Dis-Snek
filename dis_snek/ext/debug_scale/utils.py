@@ -20,7 +20,7 @@ def debug_embed(title: str, **kwargs) -> Embed:
         **kwargs,
     )
     e.set_footer(
-        "Dis-Snek Debug Scale",
+        "Dis-Snek Debug Cog",
         icon_url="https://media.discordapp.net/attachments/907639005070377020/918600896433238097/sparkle-snekCUnetnoise_scaleLevel0x2.500000.png",
     )
     return e

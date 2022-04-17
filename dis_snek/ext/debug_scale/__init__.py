@@ -1,7 +1,7 @@
 import logging
 import platform
 
-from dis_snek import Client, Scale, listen, slash_command, InteractionContext, Timestamp, TimestampStyles, Intents
+from dis_snek import Client, Cog, listen, slash_command, InteractionContext, Timestamp, TimestampStyles, Intents
 from dis_snek.client.const import logger_name, __version__, __py_version__
 from dis_snek.models.snek import checks
 from .debug_application_cmd import DebugAppCMD
@@ -9,17 +9,17 @@ from .debug_exec import DebugExec
 from .debug_scales import DebugScales
 from .utils import get_cache_state, debug_embed, strf_delta
 
-__all__ = ["DebugScale"]
+__all__ = ["DebugCog"]
 
 log = logging.getLogger(logger_name)
 
 
-class DebugScale(DebugExec, DebugAppCMD, DebugScales, Scale):
+class DebugCog(DebugExec, DebugAppCMD, DebugScales, Cog):
     def __init__(self, bot: Client) -> None:
         super().__init__(bot)
         self.add_scale_check(checks.is_owner())
 
-        log.info("Debug Scale is growing!")
+        log.info("Debug Cog is growing!")
 
     @listen()
     async def on_startup(self) -> None:
@@ -69,4 +69,4 @@ class DebugScale(DebugExec, DebugAppCMD, DebugScales, Scale):
 
 
 def setup(bot: Client) -> None:
-    DebugScale(bot)
+    DebugCog(bot)

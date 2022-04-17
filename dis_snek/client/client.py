@@ -61,7 +61,7 @@ from dis_snek.models import (
     Guild,
     GuildTemplate,
     Message,
-    Scale,
+    Cog,
     SnakeBotUser,
     User,
     Member,
@@ -1509,7 +1509,7 @@ class Client(
     async def _disconnect(self) -> None:
         self._ready.clear()
 
-    def get_scales(self, name: str) -> list[Scale]:
+    def get_scales(self, name: str) -> list[Cog]:
         """
         Get all scales with a name or extension name.
 
@@ -1528,7 +1528,7 @@ class Client(
 
         return [self.scales.get(name, None)]
 
-    def get_scale(self, name: str) -> Scale | None:
+    def get_scale(self, name: str) -> Cog | None:
         """
         Get a scale with a name or extension name.
 

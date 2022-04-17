@@ -5,7 +5,7 @@ from contextlib import redirect_stdout
 from typing import Any, Optional
 
 from dis_snek import (
-    Scale,
+    Cog,
     slash_command,
     InteractionContext,
     Modal,
@@ -24,7 +24,7 @@ from dis_snek.models import (
 __all__ = ["DebugExec"]
 
 
-class DebugExec(Scale):
+class DebugExec(Cog):
     def __init__(self, bot) -> None:
         self.cache: dict[int, str] = {}
 

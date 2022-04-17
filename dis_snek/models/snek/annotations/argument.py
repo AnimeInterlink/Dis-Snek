@@ -3,7 +3,7 @@ from typing import Callable, Union, TYPE_CHECKING
 from dis_snek.client.const import T
 from dis_snek.client.utils.misc_utils import get_parameters
 from dis_snek.models.snek.context import Context, MessageContext
-from dis_snek.models.snek.scale import Scale
+from dis_snek.models.snek.cog import Cog
 
 __all__ = ["CMD_ARGS", "CMD_AUTHOR", "CMD_BODY", "CMD_CHANNEL", "define_annotation"]
 
@@ -21,7 +21,7 @@ def define_annotation() -> Callable[[Callable[[Context], T]], Callable[[Context]
 
     **Supported Types:**
     `Context`
-    `Scale`
+    `Cog`
 
     """
 
@@ -31,7 +31,7 @@ def define_annotation() -> Callable[[Callable[[Context], T]], Callable[[Context]
         for param in params.values():
             if issubclass(param.annotation, Context):
                 args.append("context")
-            elif param.annotation is Scale:
+            elif param.annotation is Cog:
                 args.append("scale")
             # elif param.annotation is Client:
             #     args.append("snake")

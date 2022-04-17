@@ -8,6 +8,6 @@ from .context import *
 from .cooldowns import *
 from .iterator import *
 from .listener import *
-from .scale import *
+from .cog import *
 from .wait import *
 from .tasks import *

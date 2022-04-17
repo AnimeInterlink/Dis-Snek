@@ -3,7 +3,7 @@ import pprint
 from collections import Counter
 from typing import Optional
 
-from dis_snek import Scale
+from dis_snek import Cog
 from dis_snek.client.client import Client
 from dis_snek.client.const import GLOBAL_SCOPE
 from dis_snek.client.errors import HTTPException
@@ -27,7 +27,7 @@ app_cmds_def = {
 }
 
 
-class DebugAppCMD(Scale):
+class DebugAppCMD(Cog):
     def __init__(self, bot: Client) -> None:
         self.add_scale_check(checks.is_owner())
 

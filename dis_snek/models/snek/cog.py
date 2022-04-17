@@ -15,18 +15,18 @@ if TYPE_CHECKING:
 
 log = logging.getLogger(logger_name)
 
-__all__ = ["Scale"]
+__all__ = ["Cog"]
 
 
-class Scale:
+class Cog:
     """
-    A class that allows you to separate your commands and listeners into separate files. Skins require an entrypoint in the same file called `setup`, this function allows client to load the Scale.
+    A class that allows you to separate your commands and listeners into separate files. Skins require an entrypoint in the same file called `setup`, this function allows client to load the Cog.
 
     ??? Hint "Example Usage:"
         ```python
-        class ExampleScale(Scale):
+        class ExampleScale(Cog):
             def __init__(self, bot):
-                print("Scale Created")
+                print("Cog Created")
 
             @message_command
             async def some_command(self, context):
@@ -35,8 +35,8 @@ class Scale:
 
     Attributes:
         bot Client: A reference to the client
-        name str: The name of this Scale (`read-only`)
-        description str: A description of this Scale
+        name str: The name of this Cog (`read-only`)
+        description str: A description of this Cog
         scale_checks str: A list of checks to be ran on any command in this scale
         scale_prerun List: A list of coroutines to be run before any command in this scale
         scale_postrun List: A list of coroutines to be run after any command in this scale
@@ -55,7 +55,7 @@ class Scale:
     _listeners: List
     auto_defer: "AutoDefer"
 
-    def __new__(cls, bot: "Client", *args, **kwargs) -> "Scale":
+    def __new__(cls, bot: "Client", *args, **kwargs) -> "Cog":
         new_cls = super().__new__(cls)
         new_cls.bot = bot
         new_cls.__name = cls.__name__
@@ -112,21 +112,21 @@ class Scale:
 
     @property
     def commands(self) -> List["BaseCommand"]:
-        """Get the commands from this Scale."""
+        """Get the commands from this Cog."""
         return self._commands
 
     @property
     def listeners(self) -> List["Listener"]:
-        """Get the listeners from this Scale."""
+        """Get the listeners from this Cog."""
         return self._listeners
 
     @property
     def name(self) -> str:
-        """Get the name of this Scale."""
+        """Get the name of this Cog."""
         return self.__name
 
     def shed(self) -> None:
-        """Called when this Scale is being removed."""
+        """Called when this Cog is being removed."""
         for func in self._commands:
             if isinstance(func, snek.ModalCommand):
                 for listener in func.listeners:
@@ -189,7 +189,7 @@ class Scale:
 
     def add_scale_prerun(self, coroutine: Callable[..., Coroutine]) -> None:
         """
-        Add a coroutine to be run **before** all commands in this Scale.
+        Add a coroutine to be run **before** all commands in this Cog.
 
         Note:
             Pre-runs will **only** be run if the commands checks pass
@@ -216,7 +216,7 @@ class Scale:
 
     def add_scale_postrun(self, coroutine: Callable[..., Coroutine]) -> None:
         """
-        Add a coroutine to be run **after** all commands in this Scale.
+        Add a coroutine to be run **after** all commands in this Cog.
 
         ??? Hint "Example Usage:"
             ```python
@@ -255,5 +255,5 @@ class Scale:
             raise TypeError("Callback must be a coroutine")
 
         if self.scale_error:
-            log.warning("Scale error callback has been overridden!")
+            log.warning("Cog error callback has been overridden!")
         self.scale_error = coroutine

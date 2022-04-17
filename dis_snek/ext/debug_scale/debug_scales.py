@@ -1,4 +1,4 @@
-from dis_snek import Scale
+from dis_snek import Cog
 from dis_snek.client.errors import ScaleLoadException, CommandCheckFailure, ExtensionLoadException
 from dis_snek.models import (
     message_command,
@@ -9,7 +9,7 @@ from dis_snek.models import (
 __all__ = ["DebugScales"]
 
 
-class DebugScales(Scale):
+class DebugScales(Cog):
     @message_command("debug_regrow")
     async def regrow(self, ctx: MessageContext, module: str) -> None:
         try:
