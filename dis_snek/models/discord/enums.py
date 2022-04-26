@@ -459,6 +459,8 @@ class ChannelTypes(IntEnum):
     """Temporary sub-channel within a GUILD_TEXT channel that is only viewable by those invited and those with the MANAGE_THREADS permission"""
     GUILD_STAGE_VOICE = 13
     """Voice channel for hosting events with an audience"""
+    GUILD_FORUM = 15
+    """A forum channel for threads"""
 
     @property
     def guild(self) -> bool:
