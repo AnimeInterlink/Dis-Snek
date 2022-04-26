@@ -2034,13 +2034,14 @@ TYPE_ALL_CHANNEL = Union[
     GuildNewsThread,
     DM,
     DMGroup,
+    GuildForum
 ]
 
 
 TYPE_DM_CHANNEL = Union[DM, DMGroup]
 
 
-TYPE_GUILD_CHANNEL = Union[GuildCategory, GuildNews, GuildText, GuildVoice, GuildStageVoice]
+TYPE_GUILD_CHANNEL = Union[GuildCategory, GuildNews, GuildText, GuildVoice, GuildStageVoice, GuildForum]
 
 
 TYPE_THREAD_CHANNEL = Union[GuildNewsThread, GuildPublicThread, GuildPrivateThread]
@@ -2065,4 +2066,5 @@ TYPE_CHANNEL_MAPPING = {
     ChannelTypes.GUILD_NEWS_THREAD: GuildNewsThread,
     ChannelTypes.DM: DM,
     ChannelTypes.GROUP_DM: DMGroup,
+    ChannelTypes.GUILD_FORUM: GuildForum
 }
