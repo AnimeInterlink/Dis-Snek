@@ -1451,7 +1451,8 @@ class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin):
             message=message_payload,
             reason=reason,
         )
-        return self._client.cache.place_channel_data(thread_data)
+        if thread_data:
+            return self._client.cache.place_channel_data(thread_data)
 
         
 
