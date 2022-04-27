@@ -1385,6 +1385,7 @@ class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin):
     """The channel guidelines (0-1024 characters)"""
 
     async def create_post(
+        self,
         name: str,
         auto_archive_duration: AutoArchiveDuration = AutoArchiveDuration.ONE_DAY,
         reason: Absent[str] = None,
@@ -1427,7 +1428,7 @@ class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin):
         """
         if not content and not (embeds or embed) and not (files or file) and not stickers:
             raise errors.EmptyMessageException(
-                "You cannot send a message without any content, embeds, files, or stickers"
+                "You cannot create a forum post without any content, embeds, files, or stickers"
             )
 
         message_payload = models.discord.message.process_message_payload(
