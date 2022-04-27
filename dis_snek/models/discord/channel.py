@@ -55,6 +55,7 @@ __all__ = [
     "GuildPrivateThread",
     "GuildVoice",
     "GuildStageVoice",
+    "GuildForum",
     "process_permission_overwrites",
     "TYPE_ALL_CHANNEL",
     "TYPE_DM_CHANNEL",
@@ -1382,6 +1383,76 @@ class GuildCategory(GuildChannel):
 class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin):
     guidelines: Optional[str] = field(default=None)
     """The channel guidelines (0-1024 characters)"""
+
+    async def create_post(
+        name: str,
+        auto_archive_duration: AutoArchiveDuration = AutoArchiveDuration.ONE_DAY,
+        reason: Absent[str] = None,
+        content: Optional[str] = None,
+        embeds: Optional[Union[List[Union["Embed", dict]], Union["Embed", dict]]] = None,
+        embed: Optional[Union["Embed", dict]] = None,
+        components: Optional[
+            Union[List[List[Union["BaseComponent", dict]]], List[Union["BaseComponent", dict]], "BaseComponent", dict]
+        ] = None,
+        stickers: Optional[Union[List[Union["Sticker", "Snowflake_Type"]], "Sticker", "Snowflake_Type"]] = None,
+        allowed_mentions: Optional[Union["AllowedMentions", dict]] = None,
+        files: Optional[Union["UPLOADABLE_TYPE", List["UPLOADABLE_TYPE"]]] = None,
+        file: Optional["UPLOADABLE_TYPE"] = None,
+        tts: bool = False,
+        flags: Optional[Union[int, "MessageFlags"]] = None,
+        **kwargs,
+    ):
+        """
+        Create a forum post.
+
+        Args:
+            name: 1-100 character thread name
+            auto_archive_duration: Time before the thread will be automatically archived. Note 3 day and 7 day archive durations require the server to be boosted.
+            reason: The reason for creating this thread.
+            content: Message text content.
+            embeds: Embedded rich content (up to 6000 characters).
+            embed: Embedded rich content (up to 6000 characters).
+            components: The components to include with the message.
+            stickers: IDs of up to 3 stickers in the server to send in the message.
+            allowed_mentions: Allowed mentions for the message.
+            reply_to: Message to reference, must be from the same channel.
+            files: Files to send, the path, bytes or File() instance, defaults to None. You may have up to 10 files.
+            file: Files to send, the path, bytes or File() instance, defaults to None. You may have up to 10 files.
+            tts: Should this message use Text To Speech.
+            flags: Message flags to apply.
+
+        Returns:
+            The created thread, if successful
+
+        """
+        if not content and not (embeds or embed) and not (files or file) and not stickers:
+            raise errors.EmptyMessageException(
+                "You cannot send a message without any content, embeds, files, or stickers"
+            )
+
+        message_payload = models.discord.message.process_message_payload(
+            content=content,
+            embeds=embeds or embed,
+            components=components,
+            stickers=stickers,
+            allowed_mentions=allowed_mentions,
+            reply_to=reply_to,
+            files=files or file,
+            tts=tts,
+            flags=flags,
+            **kwargs,
+        )
+
+        thread_data = await self._client.http.create_forum_post(
+            channel_id=self.id,
+            name=name,
+            auto_archive_duration=auto_archive_duration,
+            message=message_payload,
+            reason=reason,
+        )
+        return self._client.cache.place_channel_data(thread_data)
+
+        
 
 @define()
 class GuildNews(GuildChannel, MessageableMixin, InvitableMixin, ThreadableMixin, WebhookMixin):

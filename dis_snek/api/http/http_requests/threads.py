@@ -188,3 +188,30 @@ class ThreadRequests:
             payload["type"] = thread_type
             payload["invitable"] = invitable
             return await self.request(Route("POST", f"/channels/{channel_id}/threads"), data=payload, reason=reason)
+
+    async def create_forum_post(
+        self,
+        channel_id: "Snowflake_Type",
+        name: str,
+        auto_archive_duration: int,
+        message: dict,
+        reason: Absent[str] = MISSING,
+    ) -> discord_typings.ThreadChannelData:
+        """
+        Create a forum post in the given channel.
+
+        Args:
+            channel_id: The ID of the channel to create this thread in
+            name: The name of the thread
+            auto_archive_duration: duration in minutes to automatically archive the thread after recent activity,
+            can be set to: 60, 1440, 4320, 10080
+            message: the message payload to send as the forum post content
+            reason: An optional reason for the audit log
+
+        Returns:
+            The created thread
+
+        """
+        payload = {"name": name, "auto_archive_duration": auto_archive_duration}
+        payload.update(message)
+        return await self.request(Route("POST", f"/channels/{channel_id}/threads?has_message=true"), data=payload, reason=reason)    
