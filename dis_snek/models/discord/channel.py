@@ -1437,7 +1437,7 @@ class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin):
             components=components,
             stickers=stickers,
             allowed_mentions=allowed_mentions,
-            reply_to=reply_to,
+            reply_to=None,
             files=files or file,
             tts=tts,
             flags=flags,
