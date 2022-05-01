@@ -1380,7 +1380,7 @@ class GuildCategory(GuildChannel):
         )
 
 @define()
-class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin, WebhookMixin):
+class GuildForum(GuildChannel, InvitableMixin, ThreadableMixin):
     guidelines: Optional[str] = field(default=None)
     """The channel guidelines (0-1024 characters)"""
 
